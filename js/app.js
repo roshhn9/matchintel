@@ -151,6 +151,37 @@ function getAnalysisPageUrl(match) {
 
 
 /* =========================================
+   STEP 27D-2E-2B
+   DYNAMIC FINISHED MATCH RESULT URL
+========================================= */
+
+function getResultPageUrl(result) {
+
+    const currentPath =
+        window.location.pathname;
+
+    const isInsideMatchesFolder =
+        currentPath.includes("/matches/");
+
+    const basePath =
+        isInsideMatchesFolder
+            ? "match-result.html"
+            : "matches/match-result.html";
+
+    const resultId =
+        result.apiMatchId ||
+        result.id;
+
+    return (
+        basePath +
+        "?id=" +
+        encodeURIComponent(resultId)
+    );
+
+}
+
+
+/* =========================================
    STEP 27D-2C-8A
    LIVE MATCH STATE UI HELPERS
 ========================================= */
@@ -1296,6 +1327,14 @@ function createResultCard(result) {
             </div>
 
 
+            <a
+                href="${getResultPageUrl(result)}"
+                class="analysis-link result-details-link"
+            >
+                View Full Match Details →
+            </a>
+
+
         </article>
 
     `;
@@ -1476,7 +1515,46 @@ function getCompletedResults() {
         return [];
     }
 
-    return completedPredictions;
+    return completedPredictions
+        .map(function (result, index) {
+
+            let resultTime = 0;
+
+            if (result.utcDate) {
+                const utcTime =
+                    new Date(result.utcDate).getTime();
+
+                if (!Number.isNaN(utcTime)) {
+                    resultTime = utcTime;
+                }
+            }
+
+            if (!resultTime && result.date) {
+                const dateTime =
+                    new Date(result.date).getTime();
+
+                if (!Number.isNaN(dateTime)) {
+                    resultTime = dateTime;
+                }
+            }
+
+            return {
+                result,
+                index,
+                resultTime
+            };
+        })
+        .sort(function (a, b) {
+
+            if (a.resultTime !== b.resultTime) {
+                return b.resultTime - a.resultTime;
+            }
+
+            return b.index - a.index;
+        })
+        .map(function (item) {
+            return item.result;
+        });
 }
 
 

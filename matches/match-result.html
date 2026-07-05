@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detailed finished football match result, score and match information on MatchIntel.">
+    <title>Full Match Result | MatchIntel</title>
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        .match-result-page { padding: 48px 0 80px; }
+        .match-result-shell { max-width: 980px; margin: 0 auto; }
+        .match-result-back { display: inline-flex; margin-bottom: 24px; }
+        .match-result-hero,
+        .match-result-panel {
+            background: var(--card-bg, #111827);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .match-result-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+        .match-result-teams {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            align-items: center;
+            text-align: center;
+        }
+        .match-result-team img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            margin-bottom: 12px;
+        }
+        .match-result-team h2 { margin: 0; }
+        .match-result-score strong {
+            display: block;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1;
+        }
+        .match-result-score span {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .match-result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .match-result-stat {
+            background: rgba(255,255,255,.04);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        .match-result-stat span {
+            display: block;
+            opacity: .7;
+            margin-bottom: 6px;
+        }
+        .match-result-empty {
+            text-align: center;
+            padding: 24px 12px;
+            opacity: .75;
+        }
+        @media (max-width: 640px) {
+            .match-result-page { padding-top: 28px; }
+            .match-result-hero,
+            .match-result-panel { padding: 18px; }
+            .match-result-teams { gap: 10px; }
+            .match-result-team img { width: 52px; height: 52px; }
+            .match-result-team h2 { font-size: 1rem; }
+            .match-result-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container navbar">
+            <a href="../index.html" class="logo">
+                <span class="logo-icon">⚽</span>
+                MATCH<span>INTEL</span>
+            </a>
+
+            <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">☰</button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../predictions.html">Predictions</a>
+                <a href="../results.html" class="active">Results</a>
+                <a href="../stats.html">Stats</a>
+                <a href="../about.html">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="match-result-page">
+        <div class="container match-result-shell">
+            <a href="../results.html" class="analysis-link match-result-back">← Back to Results</a>
+
+            <div id="matchResultContent">
+                <div class="empty-message">Loading full match result...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div>
+                <a href="../index.html" class="logo footer-logo">⚽ MATCH<span>INTEL</span></a>
+                <p>Data-driven football predictions and match intelligence.</p>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html">Home</a>
+                <a href="../predictions.html">Predictions</a>
+                <a href="../results.html">Results</a>
+                <a href="../stats.html">Statistics</a>
+                <a href="../about.html">About</a>
+            </div>
+        </div>
+        <div class="copyright"><p>© 2026 MatchIntel. All rights reserved.</p></div>
+    </footer>
+
+    <script>
+        (function () {
+            "use strict";
+
+            const API_BASE = "https://matchintel.onrender.com";
+            const STORAGE_KEY = "matchintel:auto-results:v1";
+            const content = document.getElementById("matchResultContent");
+
+            const params = new URLSearchParams(window.location.search);
+            const matchId = Number(params.get("id"));
+
+            function escapeHtml(value) {
+                return String(value ?? "")
+                    .replaceAll("&", "&amp;")
+                    .replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;")
+                    .replaceAll('"', "&quot;")
+                    .replaceAll("'", "&#039;");
+            }
+
+            function getSavedResult() {
+                try {
+                    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+                    if (!Array.isArray(saved)) return null;
+
+                    return saved.find(function (item) {
+                        return Number(item.apiMatchId || item.id) === matchId;
+                    }) || null;
+                } catch (error) {
+                    return null;
+                }
+            }
+
+            function scoreValue(value) {
+                return value === null || value === undefined ? "-" : value;
+            }
+
+            function renderTeam(team, fallbackName, fallbackCrest) {
+                const name = team?.name || fallbackName || "Team";
+                const crest = team?.crest || fallbackCrest || "";
+
+                return `
+                    <div class="match-result-team">
+                        ${crest ? `<img src="${escapeHtml(crest)}" alt="${escapeHtml(name)} crest">` : ""}
+                        <h2>${escapeHtml(name)}</h2>
+                    </div>
+                `;
+            }
+
+            function renderPage(apiMatch, savedResult) {
+                const score = apiMatch?.score || savedResult?.score || {};
+                const fullTime = score.fullTime || {};
+                const halfTime = score.halfTime || {};
+                const regularTime = score.regularTime || {};
+                const extraTime = score.extraTime || {};
+                const penalties = score.penalties || {};
+
+                const homeScore =
+                    fullTime.home ?? regularTime.home ??
+                    savedResult?.actualScore?.split("-")[0] ?? "-";
+
+                const awayScore =
+                    fullTime.away ?? regularTime.away ??
+                    savedResult?.actualScore?.split("-")[1] ?? "-";
+
+                const homeTeam = apiMatch?.homeTeam || savedResult?.homeTeamApi || null;
+                const awayTeam = apiMatch?.awayTeam || savedResult?.awayTeamApi || null;
+
+                const competition =
+                    apiMatch?.competition?.name ||
+                    savedResult?.competitionApi?.name ||
+                    savedResult?.competition ||
+                    "Football";
+
+                const utcDate = apiMatch?.utcDate || savedResult?.utcDate;
+                const dateText = utcDate
+                    ? new Intl.DateTimeFormat("en-IN", {
+                        timeZone: "Asia/Kolkata",
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: true
+                    }).format(new Date(utcDate)) + " IST"
+                    : savedResult?.date || "";
+
+                document.title =
+                    `${homeTeam?.name || savedResult?.homeTeam || "Match"} ${homeScore}-${awayScore} ${awayTeam?.name || savedResult?.awayTeam || ""} | MatchIntel`;
+
+                content.innerHTML = `
+                    <section class="match-result-hero">
+                        <div class="match-result-meta">
+                            <span class="competition">${escapeHtml(competition)}</span>
+                            <span>${escapeHtml(dateText)}</span>
+                        </div>
+
+                        <div class="match-result-teams">
+                            ${renderTeam(homeTeam, savedResult?.homeTeam, savedResult?.homeFlagUrl)}
+
+                            <div class="match-result-score">
+                                <strong>${escapeHtml(homeScore)} - ${escapeHtml(awayScore)}</strong>
+                                <span>FULL TIME</span>
+                            </div>
+
+                            ${renderTeam(awayTeam, savedResult?.awayTeam, savedResult?.awayFlagUrl)}
+                        </div>
+                    </section>
+
+                    <section class="match-result-panel">
+                        <p class="section-label">SCORE BREAKDOWN</p>
+                        <h2>Match Score</h2>
+
+                        <div class="match-result-grid">
+                            <div class="match-result-stat">
+                                <span>Half Time</span>
+                                <strong>${scoreValue(halfTime.home)} - ${scoreValue(halfTime.away)}</strong>
+                            </div>
+
+                            <div class="match-result-stat">
+                                <span>Regular Time</span>
+                                <strong>${scoreValue(regularTime.home)} - ${scoreValue(regularTime.away)}</strong>
+                            </div>
+
+                            <div class="match-result-stat">
+                                <span>Extra Time</span>
+                                <strong>${scoreValue(extraTime.home)} - ${scoreValue(extraTime.away)}</strong>
+                            </div>
+
+                            <div class="match-result-stat">
+                                <span>Penalties</span>
+                                <strong>${scoreValue(penalties.home)} - ${scoreValue(penalties.away)}</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="match-result-panel">
+                        <p class="section-label">MATCH INFORMATION</p>
+                        <h2>Details</h2>
+
+                        <div class="match-result-grid">
+                            <div class="match-result-stat">
+                                <span>Status</span>
+                                <strong>${escapeHtml(apiMatch?.status || savedResult?.apiStatus || "FINISHED")}</strong>
+                            </div>
+
+                            <div class="match-result-stat">
+                                <span>Winner</span>
+                                <strong>${escapeHtml(score.winner || savedResult?.apiWinner || "-")}</strong>
+                            </div>
+
+                            <div class="match-result-stat">
+                                <span>Our Prediction</span>
+                                <strong>${escapeHtml(savedResult?.prediction || "-")}</strong>
+                            </div>
+
+                            <div class="match-result-stat">
+                                <span>Prediction Result</span>
+                                <strong>${savedResult?.correct === true ? "✓ Correct" : savedResult?.correct === false ? "✕ Incorrect" : "-"}</strong>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="match-result-panel">
+                        <p class="section-label">MATCH EVENTS & STATISTICS</p>
+                        <h2>Goals, Cards, Substitutions & Team Stats</h2>
+                        <div class="match-result-empty">
+                            Detailed event and statistics feed will appear here after the next API integration step.
+                        </div>
+                    </section>
+                `;
+            }
+
+            async function loadMatch() {
+                if (!Number.isInteger(matchId)) {
+                    content.innerHTML = `<div class="empty-message">Invalid match ID.</div>`;
+                    return;
+                }
+
+                const savedResult = getSavedResult();
+
+                try {
+                    const response = await fetch(
+                        API_BASE + "/api/matches/" + matchId,
+                        { cache: "no-store" }
+                    );
+
+                    if (!response.ok) {
+                        throw new Error("Match request failed");
+                    }
+
+                    const data = await response.json();
+                    renderPage(data.match || null, savedResult);
+                } catch (error) {
+                    if (savedResult) {
+                        renderPage(null, savedResult);
+                        return;
+                    }
+
+                    content.innerHTML = `
+                        <div class="empty-message">
+                            Full match result could not be loaded.
+                        </div>
+                    `;
+                }
+            }
+
+            const menuBtn = document.getElementById("menuBtn");
+            const navLinks = document.getElementById("navLinks");
+
+            if (menuBtn && navLinks) {
+                menuBtn.addEventListener("click", function () {
+                    navLinks.classList.toggle("show");
+                    menuBtn.textContent = navLinks.classList.contains("show") ? "✕" : "☰";
+                });
+            }
+
+            loadMatch();
+        })();
+    </script>
+</body>
+</html>
