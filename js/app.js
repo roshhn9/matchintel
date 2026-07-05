@@ -568,6 +568,120 @@ function createFullPredictionCard(match) {
 
 
 /* =========================================
+   STEP 27D-2E-1
+   LATEST MATCHES FIRST
+
+   Priority:
+   1. LIVE / HALF TIME
+   2. Today's upcoming matches
+   3. Next upcoming matches
+   4. Recently finished matches
+========================================= */
+
+function getMatchSortTime(match) {
+
+    if (match.utcDate) {
+        const utcTime = new Date(match.utcDate).getTime();
+
+        if (!Number.isNaN(utcTime)) {
+            return utcTime;
+        }
+    }
+
+    if (match.date) {
+        const dateTime = new Date(match.date).getTime();
+
+        if (!Number.isNaN(dateTime)) {
+            return dateTime;
+        }
+    }
+
+    return Number.MAX_SAFE_INTEGER;
+}
+
+
+function getLatestMatchesFirst() {
+
+    if (
+        typeof predictions === "undefined" ||
+        !Array.isArray(predictions)
+    ) {
+        return [];
+    }
+
+    const now = Date.now();
+
+    return predictions
+        .map(function (match, index) {
+
+            const status = String(
+                match.apiStatus ||
+                match.status ||
+                ""
+            ).toUpperCase();
+
+            const matchTime =
+                getMatchSortTime(match);
+
+            let priority = 3;
+
+            if (
+                status === "IN_PLAY" ||
+                status === "PAUSED"
+            ) {
+                priority = 0;
+            }
+
+            else if (
+                status !== "FINISHED" &&
+                status !== "CANCELLED" &&
+                status !== "POSTPONED" &&
+                matchTime >= now
+            ) {
+                priority = 1;
+            }
+
+            else if (
+                status === "FINISHED"
+            ) {
+                priority = 2;
+            }
+
+            return {
+                match,
+                index,
+                priority,
+                matchTime
+            };
+        })
+        .sort(function (a, b) {
+
+            if (a.priority !== b.priority) {
+                return a.priority - b.priority;
+            }
+
+            /*
+               Upcoming: nearest match first.
+               Finished: most recently finished first.
+            */
+
+            if (a.priority === 2) {
+                return b.matchTime - a.matchTime;
+            }
+
+            if (a.matchTime !== b.matchTime) {
+                return a.matchTime - b.matchTime;
+            }
+
+            return a.index - b.index;
+        })
+        .map(function (item) {
+            return item.match;
+        });
+}
+
+
+/* =========================================
    DISPLAY HOMEPAGE TOP PREDICTIONS
 ========================================= */
 
@@ -606,7 +720,8 @@ function displayTopPredictions() {
 
 
     const topPredictions =
-        predictions.slice(0, 3);
+        getLatestMatchesFirst()
+            .slice(0, 3);
 
 
     predictionGrid.innerHTML =
@@ -925,7 +1040,8 @@ function displayLatestAnalysis() {
 
 
     const latestMatches =
-        predictions.slice(0, 3);
+        getLatestMatchesFirst()
+            .slice(0, 3);
 
 
     analysisGrid.innerHTML =
