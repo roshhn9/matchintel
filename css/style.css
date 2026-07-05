@@ -6926,3 +6926,24 @@ img {
     }
 
 }
+
+/* ================= ADVERTISEMENT ================= */
+
+.ad-section {
+    padding: 30px 0;
+}
+
+.ad-container {
+    width: 100%;
+    max-width: 728px;
+    min-height: 90px;
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .ad-section {
+        display: none;
+    }
+}
