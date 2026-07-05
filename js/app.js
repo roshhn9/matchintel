@@ -713,6 +713,108 @@ function getLatestMatchesFirst() {
 
 
 /* =========================================
+   STEP 27D-2F
+   HOMEPAGE MATCH CENTER
+
+   Display priority:
+   1. LIVE / HALF TIME
+   2. Today's upcoming matches
+   3. Nearest upcoming matches
+========================================= */
+
+function isSameIndiaDate(matchTime, referenceTime) {
+    const formatter = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    });
+
+    return formatter.format(new Date(matchTime)) ===
+        formatter.format(new Date(referenceTime));
+}
+
+function getHomepageMatchCenterData() {
+    if (typeof predictions === "undefined" || !Array.isArray(predictions)) {
+        return { label: "MATCH CENTER", title: "Latest Matches", matches: [] };
+    }
+
+    const now = Date.now();
+
+    const live = predictions.filter(function (match) {
+        const status = String(match.apiStatus || match.status || "").toUpperCase();
+        return status === "IN_PLAY" || status === "PAUSED";
+    }).sort(function (a, b) {
+        return getMatchSortTime(a) - getMatchSortTime(b);
+    });
+
+    if (live.length) {
+        return {
+            label: "🔴 LIVE NOW",
+            title: "Live Matches",
+            matches: live.slice(0, 3)
+        };
+    }
+
+    const upcoming = predictions.filter(function (match) {
+        const status = String(match.apiStatus || match.status || "").toUpperCase();
+        const time = getMatchSortTime(match);
+
+        return status !== "FINISHED" &&
+            status !== "CANCELLED" &&
+            status !== "POSTPONED" &&
+            time >= now;
+    }).sort(function (a, b) {
+        return getMatchSortTime(a) - getMatchSortTime(b);
+    });
+
+    const today = upcoming.filter(function (match) {
+        return isSameIndiaDate(getMatchSortTime(match), now);
+    });
+
+    if (today.length) {
+        return {
+            label: "TODAY",
+            title: "Today's Matches",
+            matches: today.slice(0, 3)
+        };
+    }
+
+    return {
+        label: "UP NEXT",
+        title: "Next Upcoming Matches",
+        matches: upcoming.slice(0, 3)
+    };
+}
+
+function displayHomepageMatchCenter() {
+    const grid = document.getElementById("homeMatchesGrid");
+    const label = document.getElementById("homeMatchesLabel");
+    const title = document.getElementById("homeMatchesTitle");
+
+    if (!grid) return;
+
+    const data = getHomepageMatchCenterData();
+
+    if (label) label.textContent = data.label;
+    if (title) title.textContent = data.title;
+
+    if (!data.matches.length) {
+        grid.innerHTML = `
+            <div class="empty-message">
+                No upcoming matches available right now.
+            </div>
+        `;
+        return;
+    }
+
+    grid.innerHTML = data.matches
+        .map(createPredictionCard)
+        .join("");
+}
+
+
+/* =========================================
    DISPLAY HOMEPAGE TOP PREDICTIONS
 ========================================= */
 
@@ -2370,6 +2472,7 @@ function initializeMatchIntelWebsite() {
 
     try {
 
+        displayHomepageMatchCenter();
         displayTopPredictions();
         displayPerformanceStats();
         displayLatestAnalysis();
