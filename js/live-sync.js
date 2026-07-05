@@ -214,7 +214,7 @@
 
 async function fetchOneMatchById(matchId) {
     const response = await fetch(
-        API_BASE + "/matches/" + matchId,
+        API_BASE + "/api/matches/" + matchId,
         {
             cache: "no-store"
         }
@@ -232,7 +232,7 @@ async function fetchOneMatchById(matchId) {
 }
 
     async function fetchLiveMatches() {
-        const response = await fetch(API_BASE + "/matches", {
+        const response = await fetch(API_BASE + "/api/matches", {
             cache: "no-store"
         });
 
