@@ -808,6 +808,61 @@ const completedPredictions = [
 ];
 
 
+
+/* =========================================
+   VERIFIED FINISHED MATCH DETAILS
+   Updated: 5 July 2026
+
+   Only facts verified from published match
+   reports are included. Unknown stats are
+   intentionally omitted instead of guessed.
+========================================= */
+
+const finishedMatchDetails = {
+    537376: {
+        venue: "Houston Stadium, Houston",
+        statusLabel: "FINISHED",
+        winnerName: "Morocco",
+        score: {
+            halfTime: { home: 0, away: 0 },
+            fullTime: { home: 0, away: 3 }
+        },
+        events: [
+            { type: "goal", minute: "50'", team: "Morocco", player: "Azzedine Ounahi", detail: "Goal" },
+            { type: "goal", minute: "82'", team: "Morocco", player: "Azzedine Ounahi", detail: "Goal" },
+            { type: "goal", minute: "90+8'", team: "Morocco", player: "Soufiane Rahimi", detail: "Goal" }
+        ],
+        summary: "Morocco defeated Canada 3-0 to reach the World Cup quarter-finals. Azzedine Ounahi scored twice before substitute Soufiane Rahimi added the third in stoppage time.",
+        stats: {
+            possession: { home: 45, away: 55 },
+            shots: { home: 10, away: 5 },
+            shotsOnTarget: { home: 3, away: 4 },
+            fouls: { home: 24, away: 14 }
+        }
+    },
+
+    537375: {
+        venue: "Philadelphia Stadium, Philadelphia",
+        statusLabel: "FINISHED",
+        winnerName: "France",
+        score: {
+            halfTime: { home: 0, away: 0 },
+            fullTime: { home: 0, away: 1 }
+        },
+        events: [
+            { type: "card", minute: "19'", team: "France", player: "Bradley Barcola", detail: "Yellow card" },
+            { type: "goal", minute: "70'", team: "France", player: "Kylian Mbappé", detail: "Penalty" },
+            { type: "card", minute: "81'", team: "France", player: "Manu Koné", detail: "Yellow card" },
+            { type: "card", minute: "82'", team: "France", player: "Manu Koné", detail: "Second yellow card" },
+            { type: "card", minute: "90+7'", team: "France", player: "Michael Olise", detail: "Yellow card" }
+        ],
+        summary: "France beat Paraguay 1-0 and advanced to the quarter-finals. Kylian Mbappé scored the decisive 70th-minute penalty after Désiré Doué was fouled in the area.",
+        stats: null
+    }
+};
+
+window.MATCHINTEL_FINISHED_MATCH_DETAILS = finishedMatchDetails;
+
 /* =========================================
    MATCHINTEL - SAFE PROFESSIONAL FLAG DATA
 ========================================= */

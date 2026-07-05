@@ -65,6 +65,33 @@
             opacity: .7;
             margin-bottom: 6px;
         }
+
+        .match-result-summary { line-height: 1.7; opacity: .88; margin: 0; }
+        .match-event-list { display: grid; gap: 10px; margin-top: 18px; }
+        .match-event {
+            display: grid;
+            grid-template-columns: 72px 1fr auto;
+            gap: 14px;
+            align-items: center;
+            background: rgba(255,255,255,.04);
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+        .match-event-minute { font-weight: 800; color: #38e879; }
+        .match-event-detail { opacity: .72; text-align: right; }
+        .match-stats { margin-top: 24px; display: grid; gap: 12px; }
+        .match-stat-row {
+            display: grid;
+            grid-template-columns: 72px 1fr 72px;
+            gap: 12px;
+            align-items: center;
+            text-align: center;
+        }
+        .match-stat-bar { height: 8px; display: flex; overflow: hidden; border-radius: 999px; background: rgba(255,255,255,.08); }
+        .match-stat-home { background: #38e879; }
+        .match-stat-away { background: rgba(255,255,255,.45); }
+        .match-stat-label { font-size: .9rem; opacity: .72; margin: 4px 0 0; text-align: center; }
+
         .match-result-empty {
             text-align: center;
             padding: 24px 12px;
@@ -129,6 +156,7 @@
         <div class="copyright"><p>© 2026 MatchIntel. All rights reserved.</p></div>
     </footer>
 
+    <script src="../js/data.js"></script>
     <script>
         (function () {
             "use strict";
@@ -178,10 +206,73 @@
                 `;
             }
 
+
+            function getVerifiedDetails() {
+                return window.MATCHINTEL_FINISHED_MATCH_DETAILS?.[matchId] || null;
+            }
+
+            function readableWinner(scoreWinner, details, homeName, awayName) {
+                if (details?.winnerName) return details.winnerName;
+                if (scoreWinner === "HOME_TEAM") return homeName;
+                if (scoreWinner === "AWAY_TEAM") return awayName;
+                if (scoreWinner === "DRAW") return "Draw";
+                return scoreWinner || "-";
+            }
+
+            function renderEvents(details) {
+                if (!details?.events?.length) {
+                    return `<div class="match-result-empty">Detailed events are not available yet.</div>`;
+                }
+
+                return `<div class="match-event-list">${details.events.map(function (event) {
+                    const icon = event.type === "goal" ? "⚽" : event.type === "card" ? "🟨" : "↔";
+                    return `
+                        <div class="match-event">
+                            <div class="match-event-minute">${escapeHtml(event.minute)}</div>
+                            <div><strong>${icon} ${escapeHtml(event.player)}</strong><br><span>${escapeHtml(event.team)}</span></div>
+                            <div class="match-event-detail">${escapeHtml(event.detail)}</div>
+                        </div>`;
+                }).join("")}</div>`;
+            }
+
+            function renderStats(details) {
+                const stats = details?.stats;
+                if (!stats) return "";
+
+                const rows = [
+                    ["Possession", stats.possession, "%"],
+                    ["Shots", stats.shots, ""],
+                    ["Shots on Target", stats.shotsOnTarget, ""],
+                    ["Fouls", stats.fouls, ""]
+                ].filter(function (row) { return row[1]; });
+
+                if (!rows.length) return "";
+
+                return `<div class="match-stats">${rows.map(function (row) {
+                    const label = row[0], values = row[1], suffix = row[2];
+                    const total = Math.max(1, Number(values.home) + Number(values.away));
+                    const homeWidth = (Number(values.home) / total) * 100;
+                    const awayWidth = 100 - homeWidth;
+                    return `
+                        <div>
+                            <div class="match-stat-row">
+                                <strong>${escapeHtml(values.home)}${suffix}</strong>
+                                <div class="match-stat-bar">
+                                    <span class="match-stat-home" style="width:${homeWidth}%"></span>
+                                    <span class="match-stat-away" style="width:${awayWidth}%"></span>
+                                </div>
+                                <strong>${escapeHtml(values.away)}${suffix}</strong>
+                            </div>
+                            <p class="match-stat-label">${escapeHtml(label)}</p>
+                        </div>`;
+                }).join("")}</div>`;
+            }
+
             function renderPage(apiMatch, savedResult) {
-                const score = apiMatch?.score || savedResult?.score || {};
-                const fullTime = score.fullTime || {};
-                const halfTime = score.halfTime || {};
+                const details = getVerifiedDetails();
+                const score = apiMatch?.score || savedResult?.score || details?.score || {};
+                const fullTime = score.fullTime || details?.score?.fullTime || {};
+                const halfTime = score.halfTime || details?.score?.halfTime || {};
                 const regularTime = score.regularTime || {};
                 const extraTime = score.extraTime || {};
                 const penalties = score.penalties || {};
@@ -277,7 +368,7 @@
 
                             <div class="match-result-stat">
                                 <span>Winner</span>
-                                <strong>${escapeHtml(score.winner || savedResult?.apiWinner || "-")}</strong>
+                                <strong>${escapeHtml(readableWinner(score.winner || savedResult?.apiWinner, details, homeTeam?.name || savedResult?.homeTeam, awayTeam?.name || savedResult?.awayTeam))}</strong>
                             </div>
 
                             <div class="match-result-stat">
@@ -295,9 +386,9 @@
                     <section class="match-result-panel">
                         <p class="section-label">MATCH EVENTS & STATISTICS</p>
                         <h2>Goals, Cards, Substitutions & Team Stats</h2>
-                        <div class="match-result-empty">
-                            Detailed event and statistics feed will appear here after the next API integration step.
-                        </div>
+                        ${details?.summary ? `<p class="match-result-summary">${escapeHtml(details.summary)}</p>` : ""}
+                        ${renderEvents(details)}
+                        ${renderStats(details)}
                     </section>
                 `;
             }
