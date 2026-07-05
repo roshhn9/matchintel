@@ -6,7 +6,7 @@
 (function () {
     "use strict";
 
-    const API_BASE = "http://localhost:3000/api";
+    const API_BASE = "https://matchintel.onrender.com";
     const REFRESH_MS = 2 * 60 * 1000;
     const STORAGE_KEY = "matchintel:auto-results:v1";
 
