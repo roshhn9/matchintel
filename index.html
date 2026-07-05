@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="MatchIntel provides data-driven football predictions, match analysis, win probabilities and expected scores.">
+
+    <meta name="keywords"
+          content="football predictions, football analysis, match predictions, soccer predictions, expected score">
+
+    <meta name="author" content="MatchIntel">
+
+    <title>MatchIntel | Football Predictions & Match Analysis</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+                <span class="logo-icon">⚽</span>
+                MATCH<span>INTEL</span>
+            </a>
+
+            <button class="menu-btn" id="menuBtn"
+                    aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Home</a>
+                <a href="predictions.html">Predictions</a>
+                <a href="results.html">Results</a>
+                <a href="stats.html">Stats</a>
+                <a href="about.html">About</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-badge">
+                    ⚡ DATA-DRIVEN FOOTBALL INTELLIGENCE
+                </div>
+
+                <h1>
+                    Smarter Football
+                    <span>Predictions.</span>
+                </h1>
+
+                <p>
+                    In-depth match analysis using recent form,
+                    attacking strength, defensive performance
+                    and football statistics.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="predictions.html" class="btn btn-primary">
+                        View Predictions →
+                    </a>
+
+                    <a href="#how-it-works" class="btn btn-secondary">
+                        Our Method
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TOP PREDICTIONS ================= -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-label">MATCH INTELLIGENCE</p>
+                        <h2>Today's Top Predictions</h2>
+                    </div>
+
+                    <a href="predictions.html" class="view-all">
+                        View All →
+                    </a>
+
+                </div>
+
+                <!-- JavaScript will add prediction cards here -->
+
+                <div class="prediction-grid" id="predictionGrid">
+
+                    <div class="empty-message">
+                        Prediction data loading...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PERFORMANCE ================= -->
+
+        <section class="performance-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-label">TRACK RECORD</p>
+                        <h2>Our Performance</h2>
+                    </div>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalPredictions">
+                            0
+                        </span>
+                        <span class="stat-label">
+                            Total Predictions
+                        </span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-number" id="correctPredictions">
+                            0
+                        </span>
+                        <span class="stat-label">
+                            Correct Predictions
+                        </span>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-number" id="accuracyRate">
+                            0%
+                        </span>
+                        <span class="stat-label">
+                            Accuracy Rate
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="section" id="how-it-works">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <div>
+                        <p class="section-label">OUR APPROACH</p>
+                        <h2>How MatchIntel Works</h2>
+                    </div>
+
+                </div>
+
+                <div class="method-grid">
+
+                    <article class="method-card">
+
+                        <div class="method-number">01</div>
+
+                        <h3>Analyse Form</h3>
+
+                        <p>
+                            We study recent results and performance
+                            trends to understand each team's current form.
+                        </p>
+
+                    </article>
+
+
+                    <article class="method-card">
+
+                        <div class="method-number">02</div>
+
+                        <h3>Compare Statistics</h3>
+
+                        <p>
+                            Attacking strength, defensive records and
+                            match data are compared before every prediction.
+                        </p>
+
+                    </article>
+
+
+                    <article class="method-card">
+
+                        <div class="method-number">03</div>
+
+                        <h3>Calculate Probability</h3>
+
+                        <p>
+                            Match factors are converted into clear
+                            probabilities, expected scores and confidence ratings.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LATEST ANALYSIS ================= -->
+
+        <section class="section analysis-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-label">DEEP ANALYSIS</p>
+                        <h2>Latest Match Analysis</h2>
+                    </div>
+
+                </div>
+
+                <div class="analysis-grid" id="analysisGrid">
+
+                    <div class="empty-message">
+                        Match analysis coming soon.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DISCLAIMER ================= -->
+
+        <section class="disclaimer-section">
+
+            <div class="container">
+
+                <div class="disclaimer-box">
+
+                    <h3>⚠️ Important Notice</h3>
+
+                    <p>
+                        MatchIntel provides football analysis and probability-based
+                        predictions for informational and entertainment purposes.
+                        No prediction is guaranteed to be correct.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+
+                <a href="index.html" class="logo footer-logo">
+                    ⚽ MATCH<span>INTEL</span>
+                </a>
+
+                <p>
+                    Data-driven football predictions and match intelligence.
+                </p>
+
+            </div>
+
+            <div class="footer-links">
+
+                <a href="index.html">Home</a>
+                <a href="predictions.html">Predictions</a>
+                <a href="results.html">Results</a>
+                <a href="stats.html">Statistics</a>
+                <a href="about.html">About</a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            <p>
+                © 2026 MatchIntel. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/data.js"></script>
+<script src="js/live-sync.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

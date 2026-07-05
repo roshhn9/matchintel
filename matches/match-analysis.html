@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        id="pageDescription"
+        name="description"
+        content="Detailed football match prediction, probabilities, expected score and match analysis."
+    >
+
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="MatchIntel">
+
+    <title>
+        Football Match Prediction & Analysis | MatchIntel
+    </title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo" aria-label="MatchIntel Homepage">
+                <span class="logo-icon">⚽</span>
+                MATCH<span>INTEL</span>
+            </a>
+
+            <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../predictions.html" class="active">Predictions</a>
+                <a href="../results.html">Results</a>
+                <a href="../stats.html">Stats</a>
+                <a href="../about.html">About</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main id="matchAnalysisPage">
+
+        <section class="analysis-breadcrumb-section">
+            <div class="container">
+                <div class="analysis-breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span>/</span>
+                    <a href="../predictions.html">Predictions</a>
+                    <span>/</span>
+                    <span id="breadcrumbMatch">Match Analysis</span>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="match-analysis-hero">
+            <div class="container">
+
+                <div class="match-analysis-meta">
+                    <span class="competition" id="analysisCompetition">
+                        Competition
+                    </span>
+
+                    <span class="analysis-match-date" id="analysisDateTime">
+                        Date • Time
+                    </span>
+                </div>
+
+
+                <div class="analysis-teams">
+
+                    <div class="analysis-team">
+
+                        <div class="analysis-team-flag" id="analysisHomeFlag">
+                            ⚽
+                        </div>
+
+                        <span class="analysis-team-label">
+                            HOME
+                        </span>
+
+                        <h1 id="analysisHomeTeam">
+                            Home Team
+                        </h1>
+
+                    </div>
+
+
+                    <div class="analysis-vs">
+
+                        <span id="analysisMatchStatus">
+                            MATCH ANALYSIS
+                        </span>
+
+                        <strong id="analysisLiveScore">
+                            VS
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-team">
+
+                        <div class="analysis-team-flag" id="analysisAwayFlag">
+                            ⚽
+                        </div>
+
+                        <span class="analysis-team-label">
+                            AWAY
+                        </span>
+
+                        <h2 id="analysisAwayTeam">
+                            Away Team
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-main-prediction">
+
+                    <div>
+
+                        <span class="analysis-small-label">
+                            MAIN PREDICTION
+                        </span>
+
+                        <strong id="analysisMainPrediction">
+                            Prediction
+                        </strong>
+
+                    </div>
+
+
+                    <div class="analysis-confidence">
+
+                        <span>
+                            Confidence
+                        </span>
+
+                        <strong id="analysisConfidence">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="analysis-probability-section">
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            MATCH PROBABILITIES
+                        </p>
+
+                        <h2>
+                            Predicted outcome
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-probability-grid">
+
+                    <article class="analysis-probability-card">
+
+                        <span id="homeProbabilityLabel">
+                            Home Win
+                        </span>
+
+                        <strong id="homeProbabilityValue">
+                            0%
+                        </strong>
+
+                        <div class="analysis-probability-bar">
+
+                            <div
+                                id="homeProbabilityBar"
+                                style="width: 0%;"
+                            >
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="analysis-probability-card">
+
+                        <span>
+                            Draw
+                        </span>
+
+                        <strong id="drawProbabilityValue">
+                            0%
+                        </strong>
+
+                        <div class="analysis-probability-bar">
+
+                            <div
+                                id="drawProbabilityBar"
+                                style="width: 0%;"
+                            >
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="analysis-probability-card">
+
+                        <span id="awayProbabilityLabel">
+                            Away Win
+                        </span>
+
+                        <strong id="awayProbabilityValue">
+                            0%
+                        </strong>
+
+                        <div class="analysis-probability-bar">
+
+                            <div
+                                id="awayProbabilityBar"
+                                style="width: 0%;"
+                            >
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="match-overview-section">
+            <div class="container">
+
+                <div class="match-overview-grid">
+
+                    <article class="match-analysis-content-card">
+
+                        <p class="section-label">
+                            MATCH OVERVIEW
+                        </p>
+
+                        <h2 id="analysisTitle">
+                            Match Prediction
+                        </h2>
+
+                        <div id="analysisOverview">
+
+                            <p>
+                                Loading match analysis...
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <aside class="analysis-summary-card">
+
+                        <p class="section-label">
+                            QUICK PREDICTIONS
+                        </p>
+
+
+                        <div class="analysis-summary-row">
+
+                            <span>
+                                Main Prediction
+                            </span>
+
+                            <strong id="summaryPrediction">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="analysis-summary-row">
+
+                            <span>
+                                Expected Score
+                            </span>
+
+                            <strong id="summaryExpectedScore">
+                                -
+                            </strong>
+
+                        </div>
+
+
+                        <div class="analysis-summary-row">
+
+                            <span>
+                                Over 2.5 Goals
+                            </span>
+
+                            <strong id="summaryOver25">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="analysis-summary-row">
+
+                            <span>
+                                Both Teams to Score
+                            </span>
+
+                            <strong id="summaryBtts">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="analysis-summary-row">
+
+                            <span>
+                                Confidence
+                            </span>
+
+                            <strong
+                                class="analysis-green-text"
+                                id="summaryConfidence"
+                            >
+                                0%
+                            </strong>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="expected-score-section">
+            <div class="container">
+
+                <div class="expected-score-box">
+
+                    <div>
+
+                        <p class="section-label">
+                            SCORE PREDICTION
+                        </p>
+
+                        <h2>
+                            Expected Score
+                        </h2>
+
+                        <p id="expectedScoreText">
+                            Our analysis estimates the most likely scoreline.
+                        </p>
+
+                    </div>
+
+
+                    <div class="expected-score-display">
+
+                        <div>
+
+                            <span id="scoreHomeTeam">
+                                Home
+                            </span>
+
+                            <strong id="scoreHomeValue">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <span class="score-divider">
+                            -
+                        </span>
+
+
+                        <div>
+
+                            <span id="scoreAwayTeam">
+                                Away
+                            </span>
+
+                            <strong id="scoreAwayValue">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="key-factors-section">
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            MATCH INTELLIGENCE
+                        </p>
+
+                        <h2>
+                            Key factors
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="key-factors-grid" id="keyFactorsGrid">
+
+                    <div class="empty-message">
+                        Loading key factors...
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="final-verdict-section">
+            <div class="container">
+
+                <div class="final-verdict-box">
+
+                    <div class="final-verdict-icon">
+                        🎯
+                    </div>
+
+
+                    <div>
+
+                        <p class="section-label">
+                            FINAL VERDICT
+                        </p>
+
+                        <h2 id="finalPrediction">
+                            Prediction
+                        </h2>
+
+                        <p id="finalVerdictText">
+                            Loading final verdict...
+                        </p>
+
+                    </div>
+
+
+                    <div class="final-confidence">
+
+                        <span>
+                            CONFIDENCE
+                        </span>
+
+                        <strong id="finalConfidence">
+                            0%
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="back-predictions-section">
+            <div class="container">
+
+                <a
+                    href="../predictions.html"
+                    class="btn btn-secondary"
+                >
+                    ← Back to All Predictions
+                </a>
+
+            </div>
+        </section>
+
+
+        <section class="disclaimer-section">
+            <div class="container">
+
+                <div class="disclaimer-box">
+
+                    <h3>
+                        ⚠️ Important Notice
+                    </h3>
+
+                    <p>
+                        MatchIntel provides probability-based football analysis
+                        for informational and entertainment purposes only.
+                        Predictions are not guarantees of future outcomes.
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <section
+        id="matchNotFound"
+        class="section"
+        style="display: none;"
+    >
+        <div class="container">
+
+            <div class="empty-message">
+
+                <h2>
+                    Match not found
+                </h2>
+
+                <p>
+                    This match analysis link is missing or no longer available.
+                </p>
+
+                <br>
+
+                <a
+                    href="../predictions.html"
+                    class="btn btn-primary"
+                >
+                    View All Predictions
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container footer-content">
+
+            <div>
+
+                <a href="../index.html" class="logo footer-logo">
+                    ⚽ MATCH<span>INTEL</span>
+                </a>
+
+                <p>
+                    Data-driven football predictions and match intelligence.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="../index.html">
+                    Home
+                </a>
+
+                <a href="../predictions.html">
+                    Predictions
+                </a>
+
+                <a href="../results.html">
+                    Results
+                </a>
+
+                <a href="../stats.html">
+                    Statistics
+                </a>
+
+                <a href="../about.html">
+                    About
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 MatchIntel. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="../js/data.js"></script>
+    <script src="../js/live-sync.js"></script>
+    <script src="../js/app.js"></script>
+
+
+    <script>
+
+        async function renderMatchAnalysisPage() {
+
+                if (
+                    window.MatchIntelLiveSync &&
+                    window.MatchIntelLiveSync.ready
+                ) {
+                    try {
+                        await window.MatchIntelLiveSync.ready;
+                    } catch (error) {
+                        console.warn(
+                            "MATCH ANALYSIS LIVE SYNC FALLBACK:",
+                            error
+                        );
+                    }
+                }
+
+
+                /* =========================================
+                   GET MATCH ID FROM URL
+                ========================================= */
+
+                const params =
+                    new URLSearchParams(
+                        window.location.search
+                    );
+
+
+                const matchId =
+                    Number(
+                        params.get("id")
+                    );
+
+
+                /* =========================================
+                   FIND MATCH FROM DATA.JS
+                ========================================= */
+
+                const match =
+                    typeof predictions !== "undefined"
+                        ? predictions.find(
+                            function (item) {
+
+                                return (
+                                    item.id === matchId
+                                );
+
+                            }
+                        )
+                        : null;
+
+
+                /* =========================================
+                   MATCH NOT FOUND
+                ========================================= */
+
+                if (!match) {
+
+                    document.getElementById(
+                        "matchAnalysisPage"
+                    ).style.display = "none";
+
+
+                    document.getElementById(
+                        "matchNotFound"
+                    ).style.display = "block";
+
+
+                    document.title =
+                        "Match Not Found | MatchIntel";
+
+
+                    return;
+
+                }
+
+
+                /* =========================================
+                   HELPER - SET TEXT
+                ========================================= */
+
+                function setText(
+                    id,
+                    value
+                ) {
+
+                    const element =
+                        document.getElementById(id);
+
+
+                    if (element) {
+
+                        element.textContent =
+                            value;
+
+                    }
+
+                }
+
+
+                /* =========================================
+                   HELPER - SET BAR WIDTH
+                ========================================= */
+
+                function setBar(
+                    id,
+                    value
+                ) {
+
+                    const element =
+                        document.getElementById(id);
+
+
+                    if (element) {
+
+                        element.style.width =
+                            value + "%";
+
+                    }
+
+                }
+
+
+                /* =========================================
+                   EXPECTED SCORE PARTS
+                ========================================= */
+
+                const scoreParts =
+                    match.expectedScore.split("-");
+
+
+                const homeScore =
+                    scoreParts[0]
+                        ? scoreParts[0].trim()
+                        : "0";
+
+
+                const awayScore =
+                    scoreParts[1]
+                        ? scoreParts[1].trim()
+                        : "0";
+
+
+                /* =========================================
+                   DYNAMIC SEO TITLE
+                ========================================= */
+
+                document.title =
+                    match.homeTeam +
+                    " vs " +
+                    match.awayTeam +
+                    " Prediction & Analysis | MatchIntel";
+
+
+                /* =========================================
+                   DYNAMIC SEO DESCRIPTION
+                ========================================= */
+
+                const description =
+                    match.homeTeam +
+                    " vs " +
+                    match.awayTeam +
+                    " prediction, probabilities, expected score and detailed football match analysis.";
+
+
+                const descriptionMeta =
+                    document.getElementById(
+                        "pageDescription"
+                    );
+
+
+                if (descriptionMeta) {
+
+                    descriptionMeta.setAttribute(
+                        "content",
+                        description
+                    );
+
+                }
+
+
+                /* =========================================
+                   BREADCRUMB
+                ========================================= */
+
+                setText(
+                    "breadcrumbMatch",
+                    match.homeTeam +
+                    " vs " +
+                    match.awayTeam
+                );
+
+
+                /* =========================================
+                   HERO MATCH DETAILS
+                ========================================= */
+
+                setText(
+                    "analysisCompetition",
+                    match.competition
+                );
+
+
+                setText(
+                    "analysisDateTime",
+                    match.date +
+                    " • " +
+                    match.time
+                );
+
+
+                /* =========================================
+                   HERO TEAM FLAGS
+                   Uses the same central flag renderer as cards
+                ========================================= */
+
+                const homeFlagElement =
+                    document.getElementById(
+                        "analysisHomeFlag"
+                    );
+
+
+                const awayFlagElement =
+                    document.getElementById(
+                        "analysisAwayFlag"
+                    );
+
+
+                if (homeFlagElement) {
+
+                    homeFlagElement.innerHTML =
+                        typeof renderMatchIntelFlag === "function"
+                            ? renderMatchIntelFlag(
+                                match.homeTeam,
+                                match.homeFlagUrl,
+                                match.homeFlag
+                            )
+                            : match.homeFlag;
+
+                }
+
+
+                if (awayFlagElement) {
+
+                    awayFlagElement.innerHTML =
+                        typeof renderMatchIntelFlag === "function"
+                            ? renderMatchIntelFlag(
+                                match.awayTeam,
+                                match.awayFlagUrl,
+                                match.awayFlag
+                            )
+                            : match.awayFlag;
+
+                }
+
+
+                setText(
+                    "analysisHomeTeam",
+                    match.homeTeam
+                );
+
+
+                setText(
+                    "analysisAwayTeam",
+                    match.awayTeam
+                );
+
+
+                setText(
+                    "analysisMainPrediction",
+                    match.prediction
+                );
+
+
+                setText(
+                    "analysisConfidence",
+                    match.confidence + "%"
+                );
+
+
+                /* =========================================
+                   LIVE / HALF TIME / FINISHED HERO STATE
+                ========================================= */
+
+                const apiStatus =
+                    String(
+                        match.apiStatus ||
+                        match.status ||
+                        ""
+                    ).toUpperCase();
+
+                const hasRealScore =
+                    match.liveHomeScore !== null &&
+                    match.liveHomeScore !== undefined &&
+                    match.liveAwayScore !== null &&
+                    match.liveAwayScore !== undefined;
+
+                const realScore =
+                    hasRealScore
+                        ? match.liveHomeScore +
+                          " - " +
+                          match.liveAwayScore
+                        : match.actualScore || "";
+
+                let liveStatusText =
+                    "MATCH ANALYSIS";
+
+                let liveScoreText =
+                    "VS";
+
+                if (apiStatus === "IN_PLAY") {
+
+                    liveStatusText =
+                        "🔴 LIVE";
+
+                    liveScoreText =
+                        realScore || "LIVE";
+
+                } else if (apiStatus === "PAUSED") {
+
+                    liveStatusText =
+                        "HALF TIME";
+
+                    liveScoreText =
+                        realScore || "HT";
+
+                } else if (apiStatus === "FINISHED") {
+
+                    liveStatusText =
+                        "FULL TIME";
+
+                    liveScoreText =
+                        realScore || "FT";
+
+                }
+
+                setText(
+                    "analysisMatchStatus",
+                    liveStatusText
+                );
+
+                setText(
+                    "analysisLiveScore",
+                    liveScoreText
+                );
+
+
+                /* =========================================
+                   PROBABILITIES
+                ========================================= */
+
+                setText(
+                    "homeProbabilityLabel",
+                    match.homeTeam + " Win"
+                );
+
+
+                setText(
+                    "homeProbabilityValue",
+                    match.homeWin + "%"
+                );
+
+
+                setBar(
+                    "homeProbabilityBar",
+                    match.homeWin
+                );
+
+
+                setText(
+                    "drawProbabilityValue",
+                    match.draw + "%"
+                );
+
+
+                setBar(
+                    "drawProbabilityBar",
+                    match.draw
+                );
+
+
+                setText(
+                    "awayProbabilityLabel",
+                    match.awayTeam + " Win"
+                );
+
+
+                setText(
+                    "awayProbabilityValue",
+                    match.awayWin + "%"
+                );
+
+
+                setBar(
+                    "awayProbabilityBar",
+                    match.awayWin
+                );
+
+
+                /* =========================================
+                   ANALYSIS TITLE
+                ========================================= */
+
+                setText(
+                    "analysisTitle",
+
+                    match.analysisTitle ||
+
+                    (
+                        match.homeTeam +
+                        " vs " +
+                        match.awayTeam +
+                        " Prediction"
+                    )
+                );
+
+
+                /* =========================================
+                   MATCH OVERVIEW PARAGRAPHS
+                ========================================= */
+
+                const overviewElement =
+                    document.getElementById(
+                        "analysisOverview"
+                    );
+
+
+                if (overviewElement) {
+
+                    const paragraphs =
+                        Array.isArray(match.overview)
+
+                            ? match.overview
+
+                            : [
+
+                                match.homeTeam +
+                                " and " +
+                                match.awayTeam +
+                                " are analysed using match probabilities, expected goals and current match context."
+
+                            ];
+
+
+                    overviewElement.innerHTML =
+                        paragraphs
+                            .map(
+                                function (paragraph) {
+
+                                    return (
+                                        "<p>" +
+                                        paragraph +
+                                        "</p>"
+                                    );
+
+                                }
+                            )
+                            .join("");
+
+                }
+
+
+                /* =========================================
+                   QUICK PREDICTIONS
+                ========================================= */
+
+                setText(
+                    "summaryPrediction",
+                    match.prediction
+                );
+
+
+                setText(
+                    "summaryExpectedScore",
+                    match.expectedScore
+                );
+
+
+                setText(
+                    "summaryOver25",
+                    match.over25 + "%"
+                );
+
+
+                setText(
+                    "summaryBtts",
+                    match.btts + "%"
+                );
+
+
+                setText(
+                    "summaryConfidence",
+                    match.confidence + "%"
+                );
+
+
+                /* =========================================
+                   EXPECTED SCORE DISPLAY
+                ========================================= */
+
+                setText(
+                    "scoreHomeTeam",
+                    match.homeTeam
+                );
+
+
+                setText(
+                    "scoreAwayTeam",
+                    match.awayTeam
+                );
+
+
+                setText(
+                    "scoreHomeValue",
+                    homeScore
+                );
+
+
+                setText(
+                    "scoreAwayValue",
+                    awayScore
+                );
+
+
+                setText(
+                    "expectedScoreText",
+
+                    "Our analysis suggests an expected score of " +
+                    match.expectedScore +
+                    " in this match."
+                );
+
+
+                /* =========================================
+                   KEY FACTORS
+                ========================================= */
+
+                const keyFactorsGrid =
+                    document.getElementById(
+                        "keyFactorsGrid"
+                    );
+
+
+                if (keyFactorsGrid) {
+
+                    const factors =
+                        Array.isArray(match.keyFactors)
+                            ? match.keyFactors
+                            : [];
+
+
+                    if (factors.length === 0) {
+
+                        keyFactorsGrid.innerHTML = `
+
+                            <div class="empty-message">
+
+                                Key factors coming soon.
+
+                            </div>
+
+                        `;
+
+                    }
+
+                    else {
+
+                        keyFactorsGrid.innerHTML =
+                            factors
+                                .map(
+                                    function (factor) {
+
+                                        return `
+
+                                            <article class="key-factor-card">
+
+                                                <span class="key-factor-icon">
+                                                    ${factor.icon}
+                                                </span>
+
+                                                <h3>
+                                                    ${factor.title}
+                                                </h3>
+
+                                                <p>
+                                                    ${factor.text}
+                                                </p>
+
+                                            </article>
+
+                                        `;
+
+                                    }
+                                )
+                                .join("");
+
+                    }
+
+                }
+
+
+                /* =========================================
+                   FINAL VERDICT
+                ========================================= */
+
+                setText(
+                    "finalPrediction",
+                    match.prediction
+                );
+
+
+                setText(
+                    "finalVerdictText",
+
+                    match.prediction +
+                    " is the main selection from our analysis. " +
+                    "The expected score is " +
+                    match.expectedScore +
+                    " with a confidence rating of " +
+                    match.confidence +
+                    "%."
+                );
+
+
+                setText(
+                    "finalConfidence",
+                    match.confidence + "%"
+                );
+
+
+            }
+
+
+        window.addEventListener(
+            "matchintel:live-data-ready",
+            function () {
+                renderMatchAnalysisPage();
+            }
+        );
+
+
+        if (document.readyState === "loading") {
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                renderMatchAnalysisPage,
+                { once: true }
+            );
+
+        } else {
+
+            renderMatchAnalysisPage();
+
+        }
+
+    </script>
+
+</body>
+
+</html>

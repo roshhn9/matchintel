@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Explore MatchIntel football prediction statistics, overall accuracy, correct predictions, confidence performance and recent prediction form."
+    >
+
+    <meta
+        name="keywords"
+        content="football prediction statistics, football prediction accuracy, soccer prediction stats, match analysis statistics"
+    >
+
+    <meta
+        name="author"
+        content="MatchIntel"
+    >
+
+    <title>
+        Football Prediction Statistics & Accuracy | MatchIntel
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="header">
+
+        <div class="container navbar">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <span class="logo-icon">
+                    ⚽
+                </span>
+
+                MATCH<span>INTEL</span>
+
+            </a>
+
+
+            <!-- MOBILE MENU BUTTON -->
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+                aria-label="Open navigation menu"
+            >
+
+                ☰
+
+            </button>
+
+
+            <!-- NAVIGATION -->
+
+            <nav
+                class="nav-links"
+                id="navLinks"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="predictions.html">
+                    Predictions
+                </a>
+
+                <a href="results.html">
+                    Results
+                </a>
+
+                <a
+                    href="stats.html"
+                    class="active"
+                >
+                    Stats
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main>
+
+
+        <!-- =========================================
+             PAGE HERO
+        ========================================== -->
+
+        <section class="page-hero">
+
+            <div class="container">
+
+                <p class="section-label">
+                    PERFORMANCE DATA
+                </p>
+
+                <h1>
+                    Prediction Statistics
+                </h1>
+
+                <p>
+                    Explore our complete prediction performance,
+                    accuracy rate, recent form and confidence-level
+                    results based on completed predictions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             MAIN STATISTICS OVERVIEW
+        ========================================== -->
+
+        <section class="stats-overview-section">
+
+            <div class="container">
+
+                <div class="stats-overview-grid">
+
+
+                    <!-- =========================================
+                         OVERALL ACCURACY CARD
+                    ========================================== -->
+
+                    <article class="accuracy-main-card">
+
+                        <div class="accuracy-card-header">
+
+                            <div>
+
+                                <p class="section-label">
+                                    OVERALL PERFORMANCE
+                                </p>
+
+                                <h2>
+                                    Prediction Accuracy
+                                </h2>
+
+                            </div>
+
+
+                            <span class="live-stats-badge">
+                                ● LIVE DATA
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- ACCURACY NUMBER -->
+
+                        <div class="accuracy-display">
+
+                            <span
+                                class="accuracy-big-number"
+                                id="statsAccuracy"
+                            >
+                                0%
+                            </span>
+
+                            <span class="accuracy-description">
+                                Overall Accuracy
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- ACCURACY PROGRESS BAR -->
+
+                        <div class="accuracy-progress-wrapper">
+
+                            <div class="accuracy-progress-info">
+
+                                <span>
+                                    Prediction success rate
+                                </span>
+
+                                <strong
+                                    id="statsAccuracySmall"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="accuracy-progress-bar">
+
+                                <div
+                                    class="accuracy-progress-fill"
+                                    id="statsAccuracyBar"
+                                    style="width: 0%;"
+                                >
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RECORD -->
+
+                        <div class="accuracy-record">
+
+                            <div>
+
+                                <span class="record-label">
+                                    Record
+                                </span>
+
+                                <strong
+                                    id="statsRecord"
+                                >
+                                    0 - 0
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span class="record-label">
+                                    Total Predictions
+                                </span>
+
+                                <strong
+                                    id="statsTotal"
+                                >
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- =========================================
+                         QUICK STAT CARDS
+                    ========================================== -->
+
+                    <div class="quick-stats-grid">
+
+
+                        <!-- CORRECT -->
+
+                        <article class="quick-stat-card">
+
+                            <div class="quick-stat-icon correct-stat-icon">
+                                ✓
+                            </div>
+
+                            <div>
+
+                                <span class="quick-stat-label">
+                                    Correct
+                                </span>
+
+                                <strong
+                                    class="quick-stat-number"
+                                    id="statsCorrect"
+                                >
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+
+                        <!-- INCORRECT -->
+
+                        <article class="quick-stat-card">
+
+                            <div class="quick-stat-icon incorrect-stat-icon">
+                                ✕
+                            </div>
+
+                            <div>
+
+                                <span class="quick-stat-label">
+                                    Incorrect
+                                </span>
+
+                                <strong
+                                    class="quick-stat-number"
+                                    id="statsIncorrect"
+                                >
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+
+                        <!-- BEST CONFIDENCE -->
+
+                        <article class="quick-stat-card">
+
+                            <div class="quick-stat-icon">
+                                🎯
+                            </div>
+
+                            <div>
+
+                                <span class="quick-stat-label">
+                                    Best Confidence
+                                </span>
+
+                                <strong
+                                    class="quick-stat-number"
+                                    id="statsBestConfidence"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+
+                        <!-- RECENT FORM -->
+
+                        <article class="quick-stat-card">
+
+                            <div class="quick-stat-icon">
+                                📈
+                            </div>
+
+                            <div>
+
+                                <span class="quick-stat-label">
+                                    Recent Form
+                                </span>
+
+                                <strong
+                                    class="quick-stat-number recent-form-text"
+                                    id="statsRecentForm"
+                                >
+                                    -
+                                </strong>
+
+                            </div>
+
+                        </article>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             RECENT FORM SECTION
+        ========================================== -->
+
+        <section class="recent-form-section">
+
+            <div class="container">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            LATEST PERFORMANCE
+                        </p>
+
+                        <h2>
+                            Recent Prediction Form
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="recent-form-card">
+
+
+                    <div class="recent-form-header">
+
+                        <div>
+
+                            <span class="form-small-label">
+                                Latest Completed Predictions
+                            </span>
+
+                            <h3>
+                                Recent Results
+                            </h3>
+
+                        </div>
+
+
+                        <div
+                            class="form-percentage"
+                            id="recentFormAccuracy"
+                        >
+                            0%
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- JAVASCRIPT ADDS W/L CIRCLES HERE -->
+
+                    <div
+                        class="form-results"
+                        id="recentFormResults"
+                    >
+
+                        <span class="form-result-empty">
+                            Loading recent form...
+                        </span>
+
+                    </div>
+
+
+
+                    <p class="form-note">
+
+                        W = Correct prediction
+
+                        <span>
+                            •
+                        </span>
+
+                        L = Incorrect prediction
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             CONFIDENCE PERFORMANCE
+        ========================================== -->
+
+        <section class="confidence-stats-section">
+
+            <div class="container">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="section-label">
+                            CONFIDENCE ANALYSIS
+                        </p>
+
+                        <h2>
+                            Performance by Confidence
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="confidence-performance-grid">
+
+
+                    <!-- HIGH CONFIDENCE -->
+
+                    <article class="confidence-performance-card">
+
+                        <div class="confidence-performance-top">
+
+                            <div>
+
+                                <span class="confidence-range">
+                                    70%+
+                                </span>
+
+                                <h3>
+                                    High Confidence
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                class="confidence-accuracy"
+                                id="highConfidenceAccuracy"
+                            >
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div class="confidence-stat-row">
+
+                            <span>
+                                Predictions
+                            </span>
+
+                            <strong
+                                id="highConfidenceTotal"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="confidence-stat-row">
+
+                            <span>
+                                Correct
+                            </span>
+
+                            <strong
+                                id="highConfidenceCorrect"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="mini-progress-bar">
+
+                            <div
+                                class="mini-progress-fill"
+                                id="highConfidenceBar"
+                                style="width: 0%;"
+                            >
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- MEDIUM CONFIDENCE -->
+
+                    <article class="confidence-performance-card">
+
+                        <div class="confidence-performance-top">
+
+                            <div>
+
+                                <span class="confidence-range">
+                                    60% - 69%
+                                </span>
+
+                                <h3>
+                                    Medium Confidence
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                class="confidence-accuracy"
+                                id="mediumConfidenceAccuracy"
+                            >
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div class="confidence-stat-row">
+
+                            <span>
+                                Predictions
+                            </span>
+
+                            <strong
+                                id="mediumConfidenceTotal"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="confidence-stat-row">
+
+                            <span>
+                                Correct
+                            </span>
+
+                            <strong
+                                id="mediumConfidenceCorrect"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="mini-progress-bar">
+
+                            <div
+                                class="mini-progress-fill"
+                                id="mediumConfidenceBar"
+                                style="width: 0%;"
+                            >
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- LOWER CONFIDENCE -->
+
+                    <article class="confidence-performance-card">
+
+                        <div class="confidence-performance-top">
+
+                            <div>
+
+                                <span class="confidence-range">
+                                    Below 60%
+                                </span>
+
+                                <h3>
+                                    Lower Confidence
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                class="confidence-accuracy"
+                                id="lowConfidenceAccuracy"
+                            >
+                                0%
+                            </span>
+
+                        </div>
+
+
+                        <div class="confidence-stat-row">
+
+                            <span>
+                                Predictions
+                            </span>
+
+                            <strong
+                                id="lowConfidenceTotal"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="confidence-stat-row">
+
+                            <span>
+                                Correct
+                            </span>
+
+                            <strong
+                                id="lowConfidenceCorrect"
+                            >
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="mini-progress-bar">
+
+                            <div
+                                class="mini-progress-fill"
+                                id="lowConfidenceBar"
+                                style="width: 0%;"
+                            >
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             PREDICTION BREAKDOWN
+        ========================================== -->
+
+        <section class="stats-breakdown-section">
+
+            <div class="container">
+
+                <div class="stats-breakdown-box">
+
+
+                    <div>
+
+                        <p class="section-label">
+                            DATA BREAKDOWN
+                        </p>
+
+                        <h2>
+                            Current Prediction Record
+                        </h2>
+
+                        <p class="breakdown-description">
+
+                            Statistics are calculated automatically
+                            from every completed prediction stored
+                            in the MatchIntel results database.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="breakdown-bars">
+
+
+                        <!-- CORRECT BAR -->
+
+                        <div class="breakdown-item">
+
+                            <div class="breakdown-item-top">
+
+                                <span>
+                                    Correct Predictions
+                                </span>
+
+                                <strong
+                                    id="correctBreakdownPercentage"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="breakdown-bar">
+
+                                <div
+                                    class="breakdown-fill correct-breakdown-fill"
+                                    id="correctBreakdownBar"
+                                    style="width: 0%;"
+                                >
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- INCORRECT BAR -->
+
+                        <div class="breakdown-item">
+
+                            <div class="breakdown-item-top">
+
+                                <span>
+                                    Incorrect Predictions
+                                </span>
+
+                                <strong
+                                    id="incorrectBreakdownPercentage"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="breakdown-bar">
+
+                                <div
+                                    class="breakdown-fill incorrect-breakdown-fill"
+                                    id="incorrectBreakdownBar"
+                                    style="width: 0%;"
+                                >
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             TRANSPARENCY NOTICE
+        ========================================== -->
+
+        <section class="stats-transparency-section">
+
+            <div class="container">
+
+                <div class="stats-transparency-box">
+
+                    <div class="stats-transparency-icon">
+                        📊
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Statistics update automatically
+                        </h3>
+
+                        <p>
+                            Whenever a completed prediction is added
+                            to our results data, all totals, accuracy
+                            rates, recent form and confidence statistics
+                            are recalculated automatically.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             IMPORTANT NOTICE
+        ========================================== -->
+
+        <section class="disclaimer-section">
+
+            <div class="container">
+
+                <div class="disclaimer-box">
+
+                    <h3>
+                        ⚠️ Important Notice
+                    </h3>
+
+                    <p>
+                        Historical accuracy and past prediction
+                        performance do not guarantee future results.
+                        MatchIntel provides probability-based football
+                        analysis for informational and entertainment
+                        purposes.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+
+            <div>
+
+                <a
+                    href="index.html"
+                    class="logo footer-logo"
+                >
+
+                    ⚽ MATCH<span>INTEL</span>
+
+                </a>
+
+                <p>
+                    Data-driven football predictions
+                    and match intelligence.
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="predictions.html">
+                    Predictions
+                </a>
+
+                <a href="results.html">
+                    Results
+                </a>
+
+                <a href="stats.html">
+                    Statistics
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 MatchIntel. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="js/data.js"></script>
+<script src="js/live-sync.js"></script>
+<script src="js/app.js"></script>
+
+
+</body>
+
+</html>

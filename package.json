@@ -1,0 +1,23 @@
+{
+  "name": "matchintel",
+  "version": "1.0.0",
+  "description": "MatchIntel football prediction website with secure live-data backend",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "football",
+    "predictions",
+    "matchintel"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}
