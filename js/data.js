@@ -576,6 +576,210 @@ const predictions = [
 
         ]
     }
+,
+
+    /* =========================================
+       MATCH 7
+       ARGENTINA VS EGYPT
+    ========================================= */
+
+    {
+        id: 7,
+        apiMatchId: null,
+        competition: "FIFA World Cup 2026",
+        date: "7 July 2026",
+        time: "9:30 PM IST",
+        homeTeam: "Argentina",
+        homeFlag: "🇦🇷",
+        awayTeam: "Egypt",
+        awayFlag: "🇪🇬",
+        prediction: "Argentina to Qualify",
+        confidence: 74,
+        homeWin: 57,
+        draw: 25,
+        awayWin: 18,
+        over25: 54,
+        btts: 45,
+        expectedScore: "2-0",
+        status: "upcoming",
+        result: null,
+        analysisTitle: "Argentina vs Egypt Prediction",
+        overview: [
+            "Argentina enter the knockout match as favourites because of their technical quality, tournament experience and ability to control high-pressure games.",
+            "Egypt can make the contest difficult through defensive organisation and quick transitions, but Argentina are expected to create the stronger chances.",
+            "The model gives Argentina the highest probability of progressing."
+        ],
+        keyFactors: [
+            {
+                icon: "⭐",
+                title: "Tournament Experience",
+                text: "Argentina have extensive experience managing knockout matches and decisive moments."
+            },
+            {
+                icon: "🛡️",
+                title: "Egypt Defensive Shape",
+                text: "Egypt will need a compact defensive structure to limit space around the penalty area."
+            },
+            {
+                icon: "🎯",
+                title: "Chance Quality",
+                text: "Argentina are expected to create more high-quality scoring opportunities."
+            }
+        ]
+    },
+
+
+    /* =========================================
+       MATCH 8
+       SWITZERLAND VS COLOMBIA
+    ========================================= */
+
+    {
+        id: 8,
+        apiMatchId: null,
+        competition: "FIFA World Cup 2026",
+        date: "8 July 2026",
+        time: "1:30 AM IST",
+        homeTeam: "Switzerland",
+        homeFlag: "🇨🇭",
+        awayTeam: "Colombia",
+        awayFlag: "🇨🇴",
+        prediction: "Colombia to Qualify",
+        confidence: 57,
+        homeWin: 31,
+        draw: 30,
+        awayWin: 39,
+        over25: 46,
+        btts: 50,
+        expectedScore: "1-1",
+        status: "upcoming",
+        result: null,
+        analysisTitle: "Switzerland vs Colombia Prediction",
+        overview: [
+            "Switzerland and Colombia have a close knockout profile, with both teams capable of controlling long periods of the match.",
+            "Switzerland offer strong organisation, while Colombia carry greater attacking unpredictability in transition.",
+            "The model gives Colombia a narrow edge to progress, but the low confidence reflects the fine margins."
+        ],
+        keyFactors: [
+            {
+                icon: "🛡️",
+                title: "Swiss Organisation",
+                text: "Switzerland are difficult to break down when their defensive structure remains compact."
+            },
+            {
+                icon: "⚡",
+                title: "Colombia Transition Threat",
+                text: "Colombia can create danger quickly when space opens after possession changes."
+            },
+            {
+                icon: "⚖️",
+                title: "Close Contest",
+                text: "The probability spread suggests a match that may be decided by a small number of key moments."
+            }
+        ]
+    },
+
+
+    /* =========================================
+       MATCH 9
+       FRANCE VS MOROCCO
+    ========================================= */
+
+    {
+        id: 9,
+        apiMatchId: null,
+        competition: "FIFA World Cup 2026",
+        date: "10 July 2026",
+        time: "1:30 AM IST",
+        homeTeam: "France",
+        homeFlag: "🇫🇷",
+        awayTeam: "Morocco",
+        awayFlag: "🇲🇦",
+        prediction: "France to Qualify",
+        confidence: 65,
+        homeWin: 48,
+        draw: 29,
+        awayWin: 23,
+        over25: 44,
+        btts: 46,
+        expectedScore: "1-0",
+        status: "upcoming",
+        result: null,
+        analysisTitle: "France vs Morocco Prediction",
+        overview: [
+            "France face a disciplined Morocco side in a quarter-final expected to be decided by fine margins.",
+            "Morocco's defensive organisation can restrict chances, while France have greater depth and individual match-winning quality.",
+            "The model gives France the highest chance of progressing but expects a competitive contest."
+        ],
+        keyFactors: [
+            {
+                icon: "⭐",
+                title: "France Match Winners",
+                text: "France have several players capable of deciding a tight knockout match."
+            },
+            {
+                icon: "🛡️",
+                title: "Morocco Defensive Strength",
+                text: "Morocco's compact structure can make clear chances difficult to create."
+            },
+            {
+                icon: "🎯",
+                title: "Fine Margins",
+                text: "Efficiency in the final third may be more important than total possession."
+            }
+        ]
+    },
+
+
+    /* =========================================
+       MATCH 10
+       NORWAY VS ENGLAND
+    ========================================= */
+
+    {
+        id: 10,
+        apiMatchId: null,
+        competition: "FIFA World Cup 2026",
+        date: "12 July 2026",
+        time: "2:30 AM IST",
+        homeTeam: "Norway",
+        homeFlag: "🇳🇴",
+        awayTeam: "England",
+        awayFlag: "🏴",
+        prediction: "England to Qualify",
+        confidence: 58,
+        homeWin: 30,
+        draw: 29,
+        awayWin: 41,
+        over25: 60,
+        btts: 62,
+        expectedScore: "1-2",
+        status: "upcoming",
+        result: null,
+        analysisTitle: "Norway vs England Prediction",
+        overview: [
+            "Norway's direct attacking threat makes this a dangerous quarter-final for England.",
+            "England have greater squad depth and more ways to control possession, but Norway can punish defensive mistakes quickly.",
+            "The model gives England a narrow edge to progress in a match with meaningful goal potential."
+        ],
+        keyFactors: [
+            {
+                icon: "⚡",
+                title: "Norway Direct Threat",
+                text: "Norway can attack space quickly and remain dangerous around the penalty area."
+            },
+            {
+                icon: "⭐",
+                title: "England Squad Depth",
+                text: "England have more high-level options to change the match from the bench."
+            },
+            {
+                icon: "⚽",
+                title: "Goal Potential",
+                text: "Both teams have attacking profiles that increase the chance of goals."
+            }
+        ]
+    }
 
 ];
 
