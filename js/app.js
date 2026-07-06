@@ -768,22 +768,24 @@ function getHomepageMatchCenterData() {
         return getMatchSortTime(a) - getMatchSortTime(b);
     });
 
-    const today = upcoming.filter(function (match) {
+    const nextSixMatches = upcoming.slice(0, 6);
+
+    const hasTodayMatch = nextSixMatches.some(function (match) {
         return isSameIndiaDate(getMatchSortTime(match), now);
     });
 
-    if (today.length) {
+    if (hasTodayMatch) {
         return {
-            label: "TODAY",
-            title: "Today's Matches",
-            matches: today.slice(0, 3)
+            label: "TODAY & UP NEXT",
+            title: "Upcoming Matches",
+            matches: nextSixMatches
         };
     }
 
     return {
         label: "UP NEXT",
         title: "Next Upcoming Matches",
-        matches: upcoming.slice(0, 3)
+        matches: nextSixMatches
     };
 }
 
